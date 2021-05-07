@@ -11,7 +11,8 @@
                 box-sizing: border-box;
             }
             body {
-                background-color: #333;
+                background-color: #666;
+                color: #fff;
             }
             main {
                 width: 100vw;
@@ -20,6 +21,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                gap: 1rem;
             }
             .p5Canvas {
                 border: 1px solid black;
@@ -28,7 +30,10 @@
         </style>
     </head>
     <body>
-        <main></main>
+        <main>
+            <h1>A* path finder</h1>
+            <p>w = toggle walls | s = toggle stones | space = toggle running | g to play one frame | r to restart</p>
+        </main>
         <script src="/p5.js/p5.min.js"></script>
         <!-- <script src="/p5.js/p5.sound.min.js"></script> -->
         <script src="queue.js"></script>

@@ -13,7 +13,7 @@ const NODE_COLOR_END = 'orange'
 const NODE_COLOR_WALL = 'black'
 const NODE_COLOR_CURRENT = 'purple'
 const NODE_COLOR_UNVISITED = BACKGROUND_COLOR
-const NODE_COLOR_STONE = BACKGROUND_COLOR
+const NODE_COLOR_STONE = 'black'
 const PATH_COLOR_SEARCHING = 'yellow'
 const PATH_COLOR_FINAL = 'red'
 const VALUE_COLOR = 'white'
@@ -115,7 +115,7 @@ class Node {
 
     draw(color, value) {
         fill(color || 'red')
-        this.reachable ? rect(this.x, this.y, this.width, this.height) : ellipse(this.x, this.y, this.width, this.height)
+        !this.reachable && !maze_has_walls ? ellipse(this.x, this.y, this.width * 0.8, this.height * 0.8) : rect(this.x, this.y, this.width, this.height)
         if (value !== undefined) {
             fill(VALUE_COLOR)
             text(value, this.x, this.y + 4)
@@ -215,7 +215,7 @@ class Maze {
                 if (node === this.end) node.draw(NODE_COLOR_END, '终')
                 else if (node === this.start) node.draw(NODE_COLOR_START, '起')
                 else if (node === this.current) node.draw(NODE_COLOR_CURRENT, node.f.toFixed(0))
-                else if (!node.reachable) node.draw(NODE_COLOR_STONE, '⛰️')
+                else if (!node.reachable) node.draw(NODE_COLOR_STONE)
                 else if (this.openset.length > 0 && node.open)
                     node.draw(
                         node.f === this.openset.min.f ? 'red' : color(map(node.f, this.openset.min.f, this.openset.max.f + 0.0000001, 200, 50), 0, 0),
