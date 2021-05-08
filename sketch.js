@@ -246,6 +246,7 @@ class Maze {
     /**
      * 深度优先搜索（迭代实现）迷宫生成
      * @see https://en.wikipedia.org/wiki/Maze_generation_algorithm
+     */
     make_maze_depth_first_search_iterative() {
         if (maze_has_walls) {
             // Choose the initial node, mark it as visited and push it to the stack
