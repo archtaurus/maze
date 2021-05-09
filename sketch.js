@@ -56,27 +56,52 @@ function mousePressed() {
 function keyPressed() {
     switch (key.toLowerCase()) {
         case ' ': {
+            action('pause')
+            break
+        }
+        case 'g': {
+            action('stepForward')
+            break
+        }
+        case 'w': {
+            action('toggleWall')
+            break
+        }
+        case 's': {
+            action('toggleStone')
+            break
+        }
+        case 'r': {
+            action('replay')
+            break
+        }
+    }
+}
+
+function action(name) {
+    switch (name) {
+        case 'pause': {
             running = !running
             running ? loop() : noLoop()
             break
         }
-        case 'g': {
+        case 'stepForward': {
             if (!isLooping()) redraw()
             break
         }
-        case 'w': {
+        case 'toggleWall': {
             maze_has_walls = !maze_has_walls
             maze = new Maze(WINDOW_WIDTH, WINDOW_HEIGHT, MAZE_ROWS, MAZE_COLS)
             running ? loop() : redraw()
             break
         }
-        case 's': {
+        case 'toggleStone': {
             maze_has_stone = !maze_has_stone
             maze = new Maze(WINDOW_WIDTH, WINDOW_HEIGHT, MAZE_ROWS, MAZE_COLS)
             running ? loop() : redraw()
             break
         }
-        case 'r': {
+        case 'replay': {
             maze = new Maze(WINDOW_WIDTH, WINDOW_HEIGHT, MAZE_ROWS, MAZE_COLS)
             running ? loop() : redraw()
             break

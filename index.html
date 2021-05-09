@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>maze - p5.js sketch</title>
+        <title>A*路径搜索算法演示 A* path search algorithm demo</title>
         <style>
             * {
                 margin: 0px;
@@ -11,7 +11,7 @@
                 box-sizing: border-box;
             }
             body {
-                background-color: #666;
+                background-color: #333;
                 color: #fff;
             }
             main {
@@ -27,12 +27,23 @@
                 border: 1px solid black;
                 box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
             }
+            button {
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
         <main>
-            <h1>A* path finder</h1>
-            <p>w = toggle walls | s = toggle stones | space = toggle running | g to play one frame | r to restart</p>
+            <h1>A*路径搜索算法演示 A* path search algorithm demo</h1>
+            <p>
+                <button onclick="action('toggleWall')">开关墙体 [W]</button>
+                <button onclick="action('toggleStone')">开关石头 [S]</button>
+                <button onclick="action('replay')">重新开始 [R]</button>
+                <button onclick="action('pause')">暂停/继续 [SPACE]</button>
+                <button onclick="action('stepForward')">步进 [G]</button>
+            </p>
         </main>
         <script src="/p5.js/p5.min.js"></script>
         <!-- <script src="/p5.js/p5.sound.min.js"></script> -->
