@@ -103,7 +103,7 @@ function action(name) {
         }
         case 'replay': {
             maze = new Maze(WINDOW_WIDTH, WINDOW_HEIGHT, MAZE_ROWS, MAZE_COLS)
-            running ? loop() : redraw()
+            loop()
             break
         }
     }
