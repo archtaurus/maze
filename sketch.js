@@ -114,12 +114,14 @@ class Node {
         // 中心坐标
         this.row = row
         this.col = col
-        const half_w = width / 2
-        this.x = width * col + half_w
-        const half_h = height / 2
-        this.y = height * row + half_h
         this.width = width
         this.height = height
+
+        // 中心坐标
+        const half_w = width / 2
+        const half_h = height / 2
+        this.x = width * col + half_w
+        this.y = height * row + half_h
 
         // 四个角点坐标
         this.lt = { x: this.x - half_w + WALL_LINE_WEIGHT / 2, y: this.y - half_h + WALL_LINE_WEIGHT / 2 }
