@@ -193,12 +193,16 @@ class Maze {
         this.make_maze_depth_first_search_iterative()
     }
 
+    get finised() {
+        return this.openset.length === 0
+    }
+
     get solved() {
         return this.current === this.end
     }
 
-    get finised() {
-        return this.openset.length === 0
+    get hasNoSolution() {
+        return this.finised && !this.solved
     }
 
     dist(a, b) {
