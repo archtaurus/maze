@@ -23,23 +23,22 @@ const PATH_LINE_WEIGHT = WALL_LINE_WEIGHT * 4
 let gcost_max = 0
 let maze_has_walls = true
 let maze_has_stone = true
-let maze
+let maze = undefined
 let running = true
 
 function setup() {
-    // noLoop()
-    rectMode(CENTER)
-    frameRate(FRAMERATE)
-    textSize(VALUE_FONTSIZE)
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT)
+    frameRate(FRAMERATE)
+    strokeCap(PROJECT)
+    rectMode(CENTER)
+    textAlign(CENTER)
+    textSize(VALUE_FONTSIZE)
     maze = new Maze(WINDOW_WIDTH, WINDOW_HEIGHT, MAZE_ROWS, MAZE_COLS)
 }
 
 function draw() {
     for (let _ = 0; _ < SEARCH_PER_FRAME; _++) maze.update()
     background(BACKGROUND_COLOR)
-    strokeCap(PROJECT)
-    textAlign(CENTER)
     maze.draw()
 }
 
@@ -111,19 +110,19 @@ function action(name) {
 
 class Node {
     constructor(row, col, width, height) {
-        // 中心坐标
+        // 迷宫坐标
         this.row = row
         this.col = col
         this.width = width
         this.height = height
 
-        // 中心坐标
+        // 图形坐标
         const half_w = width / 2
         const half_h = height / 2
         this.x = width * col + half_w
         this.y = height * row + half_h
 
-        // 四个角点坐标
+        // 四个角点图形坐标
         this.lt = { x: this.x - half_w + WALL_LINE_WEIGHT / 2, y: this.y - half_h + WALL_LINE_WEIGHT / 2 }
         this.rt = { x: this.x + half_w - WALL_LINE_WEIGHT / 2, y: this.y - half_h + WALL_LINE_WEIGHT / 2 }
         this.rb = { x: this.x + half_w - WALL_LINE_WEIGHT / 2, y: this.y + half_h - WALL_LINE_WEIGHT / 2 }
@@ -174,11 +173,10 @@ class Maze {
                     this.grid[row][col].reachable = false
             }
         }
+
         // 设置起点终点
         this.start = this.grid[0][0]
-        this.start.reachable = true
         this.end = this.grid[rows - 1][cols - 1]
-        this.end.reachable = true
 
         // 待探索节点队列
         this.openset = new PriorityQueue()
